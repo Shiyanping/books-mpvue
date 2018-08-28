@@ -36,6 +36,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import '../../stylus/mixin.styl';
 .image
-  width 20px
+  no-wrap();
+  width 20px;
 </style>
