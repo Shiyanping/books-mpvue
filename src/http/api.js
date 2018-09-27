@@ -1,9 +1,10 @@
 // 配置项
 
-const host = 'https://douban.uieee.com/v2/book/1220562';
+const host = 'http://localhost:5757';
 
 const config = {
-  host
+  host,
+  loginUrl: `${host}/weapp/login`
 };
 
 export default config;

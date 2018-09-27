@@ -19,17 +19,12 @@ export default {
       navigationBarTextStyle: '#fff'
     },
     tabBar: {
-      selectedColor: '#34b546',
+      selectedColor: '#ff5645',
       list: [{
         pagePath: 'pages/books/main',
         text: '图书',
-        iconPath: 'static/image/books.png',
-        selectedIconPath: 'static/image/books-click.png'
-      }, {
-        pagePath: 'pages/comments/main',
-        text: '评论',
-        iconPath: 'static/image/books.png',
-        selectedIconPath: 'static/image/books-click.png'
+        iconPath: 'static/image/feed.png',
+        selectedIconPath: 'static/image/feed-click.png'
       }, {
         pagePath: 'pages/me/main',
         text: '我的',

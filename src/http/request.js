@@ -10,7 +10,7 @@ export default function request(url, data = {}, methods = 'POST') {
       methods,
       success(res) {
         if (res.statusCode === 200) {
-          resolve(res);
+          resolve(res.data);
         } else {
           reject(res);
         }
