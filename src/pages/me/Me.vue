@@ -1,13 +1,12 @@
 <template>
   <div class="container">
-    <div class="userinfo">
+    <button open-type="getUserInfo" lang="zh_CN" @getuserinfo="doLogin" class="user-info">
       <img :src="userInfo.avatarUrl" alt="">
       <p>{{userInfo.nickName}}</p>
-    </div>
-    <YearProgress></YearProgress>
+    </button>
+    <year-progress></year-progress>
 
     <button class="btn" @click="scanBook">添加图书</button>
-    <button open-type="getUserInfo" lang="zh_CN" @getuserinfo="doLogin">获取用户信息</button>
   </div>
 </template>
 
@@ -15,15 +14,25 @@
 import qcloud from 'wafer2-client-sdk';
 import config from '@/http/api';
 import { showSuccess } from '@/utils/index';
+import YearProgress from '@/components/YearProgress';
 export default {
   data() {
     return {
-      userInfo: {},
+      userInfo: {
+        avatarUrl: '/static/image/avator.png',
+        nickName: '请先登录'
+      },
       logged: null
     };
   },
+  components: {
+    YearProgress
+  },
   created() {
-    this.userInfo = wx.getStorageSync('userinfo');
+    const userInfo = wx.getStorageSync('userinfo');
+    if (userInfo) {
+      this.userInfo = userInfo;
+    }
     qcloud.setLoginUrl(config.loginUrl);
   },
   mounted() {
@@ -31,7 +40,11 @@ export default {
   },
   methods: {
     scanBook() {
-
+      wx.scanCode({
+        success: res => {
+          console.log(res);
+        }
+      });
     },
     doLogin() {
       const session = qcloud.Session.get();
@@ -72,12 +85,13 @@ export default {
 
 <style lang="stylus" scoped>
 @import '../../stylus/mixin.styl'
-.userinfo
+.user-info
   display flex
   flex-direction column
   justify-content center
   align-items center
   margin 20px 0
+  background #ffffff
   img
     width 90px
     height 90px
@@ -85,4 +99,6 @@ export default {
   p
     text-align center
     margin-top 20px
+.user-info::after
+  border none
 </style>
