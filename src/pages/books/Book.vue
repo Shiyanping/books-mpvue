@@ -1,20 +1,32 @@
 <template>
   <div>
-    这是图书页
+    <book-card v-for="item in bookList" :key="item.id" :data="item"></book-card>
   </div>
 </template>
 
 <script>
-import request from '@/http/request';
 import config from '@/http/api';
+import request from '@/http/request';
+import BookCard from '@/components/BookCard';
 export default {
   name: 'Books',
   data() {
-    return {};
+    return {
+      bookList: []
+    };
   },
-  async created() {
-    const res = await request(`${config.host}/weapp/test`);
-    console.log(res);
+  created() {
+    this.getBookList();
+  },
+  components: {
+    BookCard
+  },
+  methods: {
+    async getBookList() {
+      const res = await request(config.getBookList);
+      this.bookList = res.data;
+      console.log(res.data);
+    }
   }
 };
 </script>

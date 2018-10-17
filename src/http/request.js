@@ -1,13 +1,13 @@
 // 网络请求
-export default function request(url, data = {}, methods = 'POST') {
+export default function request(url, data = {}, method = 'GET') {
   return new Promise((resolve, reject) => {
     wx.request({
       url,
       data,
       header: {
-        'content-type': 'json'
+        'content-type': 'application/x-www-form-urlencoded'
       },
-      methods,
+      method,
       success(res) {
         if (res.statusCode === 200) {
           resolve(res.data);

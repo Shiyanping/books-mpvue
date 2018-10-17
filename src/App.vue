@@ -3,5 +3,5 @@ export default {};
 </script>
 
 <style lang="stylus">
-@import 'stylus/index.styl'
+@import 'styles/index.styl'
 </style>

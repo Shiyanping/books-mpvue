@@ -13,7 +13,8 @@
 <script>
 import qcloud from 'wafer2-client-sdk';
 import config from '@/http/api';
-import { showSuccess } from '@/utils/index';
+import request from '@/http/request';
+import { showSuccess, showModal } from '@/utils/index';
 import YearProgress from '@/components/YearProgress';
 export default {
   data() {
@@ -39,12 +40,24 @@ export default {
     console.log(this.$root.$mp.appOptions);
   },
   methods: {
+    async addBook(isbn) {
+      const addBookResult = await request(
+        config.handleAddBook,
+        {
+          isbn,
+          openId: this.userInfo.openId
+        },
+        'POST'
+      );
+      showModal('温馨提示', addBookResult.msg);
+    },
     scanBook() {
       wx.scanCode({
         success: res => {
-          console.log(res);
+          this.addBook(res.result);
         }
       });
+      // console.log(isbn);
     },
     doLogin() {
       const session = qcloud.Session.get();
@@ -84,7 +97,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../../stylus/mixin.styl'
 .user-info
   display flex
   flex-direction column

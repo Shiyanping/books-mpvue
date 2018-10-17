@@ -41,3 +41,11 @@ export function showSuccess(text) {
     icon: 'success'
   });
 }
+
+export function showModal(title, content) {
+  wx.showModal({
+    title,
+    content,
+    showCancel: false
+  });
+}

@@ -22,9 +22,6 @@ router.get('/user', validationMiddleware, controllers.user);
 // 图片上传接口，小程序端可以直接将 url 填入 wx.uploadFile 中
 router.post('/upload', controllers.upload);
 
-// 测试接口
-router.get('/test', controllers.test);
-
 // --- 信道服务接口 Demo --- //
 // GET 用来响应请求信道地址的
 router.get('/tunnel', controllers.tunnel.get);
@@ -36,5 +33,11 @@ router.post('/tunnel', controllers.tunnel.post);
 router.get('/message', controllers.message.get);
 // POST 用来处理微信转发过来的客服消息
 router.post('/message', controllers.message.post);
+
+// 添加图书
+router.post('/addBook', controllers.addBook);
+
+// 查询图书列表
+router.get('/bookList', controllers.bookList);
 
 module.exports = router;
