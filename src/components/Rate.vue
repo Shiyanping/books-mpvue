@@ -26,6 +26,7 @@ export default {
 .rate
   position relative
   margin-right 5px
+  color #ff5645
   .hollow
     position absolute
     display inline-block
